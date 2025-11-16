@@ -11,13 +11,15 @@
                         <VBox alignment="CENTER_LEFT">
                             <children>
                                 <Label fx:id="titleLabel" styleClass="modal-title" text="Note title" />
+                                <!-- editable title field (hidden until edit mode) -->
+                                <TextField fx:id="titleField" visible="false" styleClass="modal-input" promptText="Note title..." />
                                 <Label fx:id="subtitleLabel" styleClass="modal-subtitle" text="" />
                             </children>
                         </VBox>
                         <Region HBox.hgrow="ALWAYS" />
                         <HBox spacing="8">
                             <children>
-                                <Button text="Edit" styleClass="button modal-submit" />
+                                <Button fx:id="editButton" text="Edit" onAction="#onEditToggle" styleClass="button modal-submit" />
                                 <Button text="Delete" onAction="#onDelete" styleClass="button modal-cancel" />
                                 <Button text="X" onAction="#onClose" styleClass="modal-close" />
                             </children>
@@ -29,8 +31,12 @@
                     <children>
                         <Label text="Subject" styleClass="modal-field-label" />
                         <Label fx:id="subjectLabel" />
+                        <!-- editable subject field (hidden until edit mode) -->
+                        <TextField fx:id="subjectField" visible="false" promptText="Subject..." styleClass="modal-input" />
                         <Label text="Tags" styleClass="modal-field-label" />
                         <Label fx:id="tagsLabel" />
+                        <!-- editable tags field (hidden until edit mode) -->
+                        <TextField fx:id="tagsField" visible="false" promptText="tag1, tag2" styleClass="modal-input" />
                         <Label text="Content" styleClass="modal-field-label" />
                         <TextArea fx:id="contentArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="220" />
                     </children>
