@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.TaskViewController" alignment="CENTER">
+    <children>
+        <VBox spacing="0" alignment="TOP_CENTER" styleClass="modal-dialog">
+            <children>
+                <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="8">
+                    <children>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label fx:id="taskTitleLabel" styleClass="modal-title" text="Task title" />
+                                <Label fx:id="taskSubtitleLabel" styleClass="modal-subtitle" text="" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="X" onAction="#onClose" styleClass="modal-close" />
+                    </children>
+                </HBox>
+
+                <VBox spacing="12" styleClass="modal-body">
+                    <children>
+                        <Label text="Subject" styleClass="modal-field-label" />
+                        <Label fx:id="subjectLabel" />
+
+                        <Label text="Details" styleClass="modal-field-label" />
+                        <TextArea fx:id="taskDetailsArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="160" />
+                        <HBox spacing="12">
+                            <children>
+                                <Label text="Due:" styleClass="modal-field-label" />
+                                <Label fx:id="dueLabel" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Status:" styleClass="modal-field-label" />
+                                <Label fx:id="statusLabel" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

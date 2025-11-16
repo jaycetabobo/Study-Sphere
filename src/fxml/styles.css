@@ -1,0 +1,883 @@
+// filepath: c:\Users\donna\IdeaProjects\Study Sphere\src\fxml\styles.css
+/* Basic normalized styles for the StudySphere mock app */
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #f2f2f2;
+}
+
+/* primary button */
+.button.primary-button, .button.primary-button:focused {
+    -fx-background-color: linear-gradient(#4a90e2, #357ABD);
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-background-radius: 8px;
+    -fx-padding: 10 18 10 18;
+}
+.primary-button:hover { -fx-opacity: 0.95; }
+
+/* sidebar */
+#sidebar {
+    -fx-background-color: transparent; /* outer wrapper already uses specific colors */
+}
+
+.button.side-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cbd6df;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 16 12 16;
+}
+.button.side-button:hover {
+    -fx-background-color: rgba(255,255,255,0.03);
+    -fx-text-fill: white;
+}
+
+/* Strong overrides to remove default JavaFX button chrome on sidebar buttons */
+.side-button, .nav-button, .header-button {
+    -fx-background-color: transparent; /* base transparent */
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-effect: none;
+    -fx-padding: 0; /* padding set below per type */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-cursor: hand;
+}
+
+/* Strong overrides specifically for the sidebar to eliminate default JavaFX button chrome */
+#sidebar .button {
+    -fx-background-color: transparent; /* make buttons flat so background shows through */
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-effect: none;
+    -fx-padding: 0; /* concrete padding set per button type */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* Header button: dark with subtle bottom highlight and no default chrome */
+.button.header-button {
+    -fx-background-color: linear-gradient(#2b2b2b, #1e1e1e);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 16 18 16 18;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #e6e6e6;
+    -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.35), 6, 0.0, 0, 2); /* subtle top shadow */
+}
+
+/* Navigation buttons: flat, no bevel, proper padding and separators */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e6e6e6;
+    -fx-font-size: 15px;
+    -fx-padding: 18 18 18 18;
+    -fx-alignment: CENTER_LEFT;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: rgba(0,0,0,0.18);
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255,255,255,0.03);
+}
+
+/* Remove focus outlines for these buttons */
+.side-button:focused, .nav-button:focused, .header-button:focused {
+    -fx-effect: none;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* SVG icons inside sidebar buttons should be light and sized appropriately */
+.button.header-button .svg-path, .button.side-button .svg-path {
+    -fx-fill: #cbd6df;
+}
+
+/* ensure the graphic spacing looks like other buttons */
+.button.header-button > .graphic {
+    -fx-padding: 0 10 0 0;
+}
+
+/* login card */
+#loginCard {
+    -fx-background-color: #d9d9d9;
+    -fx-background-radius: 8px;
+    -fx-padding: 16px 18px 14px 18px;
+    -fx-border-color: rgba(0,0,0,0.6);
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow(two-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);
+}
+
+#loginCard > Label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #111111;
+    -fx-padding: 6 0 4 6;
+}
+
+/* form label inside login card */
+.form-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #111111;
+    -fx-padding: 6 0 4 6;
+}
+
+/* inputs inside the card (dark rounded inner field) */
+.card-input {
+    /* two-layer background to create a subtle inset look */
+    -fx-background-color: linear-gradient(#6b6b6b, #5f5f5f), rgba(255,255,255,0.03);
+    -fx-background-insets: 0, 4;
+    -fx-background-radius: 6px, 4px;
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255,255,255,0.75);
+    -fx-border-color: rgba(0,0,0,0.25);
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+
+.card-input:focused {
+    -fx-border-color: rgba(0,0,0,0.35);
+    -fx-effect: none;
+}
+
+/* exact Sign In button styling to match reference */
+.button.login-button-dark {
+    -fx-background-color: linear-gradient(#1a1a1a, #0f0f0f);
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 6px;
+    -fx-padding: 10 22 10 22;
+    -fx-border-color: rgba(0,0,0,0.7);
+    -fx-border-width: 1px;
+    -fx-effect: innershadow(one-pass-box, rgba(255,255,255,0.04), 6, 0.0, 0, 1);
+}
+
+.button.login-button-dark:hover {
+    -fx-background-color: linear-gradient(#1f1f1f, #0b0b0b);
+}
+
+/* logo style */
+.logo-large {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.55) , 14,0,0,6 );
+}
+
+.label.login-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #2b3b4a;
+}
+
+/* cards */
+.vbox.card, .panel {
+    -fx-background-color: white;
+    -fx-padding: 14;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-color: #e6eef8;
+}
+
+/* ensure listview cells spacing */
+.list-cell {
+    -fx-padding: 10 8 10 8;
+}
+
+/* notes list */
+.list-view { -fx-background-color: transparent; }
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #222222; /* default text color for list items */
+    -fx-font-weight: 400;  /* normal weight so selection doesn't bold text */
+}
+.list-cell:hover {
+    -fx-background-color: rgba(74,144,226,0.05);
+}
+/* selected state: keep text dark and normal weight so it's readable on any bg */
+.list-cell:selected {
+    -fx-background-color: rgba(74,144,226,0.12);
+    -fx-text-fill: #111111;
+    -fx-font-weight: 400;
+}
+
+/* stronger specificity for list cells inside info cards */
+.info-card.tall .list-view { -fx-background-color: transparent; }
+.info-card.tall .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #222222;
+    -fx-font-weight: 400;
+}
+.info-card.tall .list-cell:hover {
+    -fx-background-color: rgba(74,144,226,0.03);
+}
+.info-card.tall .list-cell:selected {
+    -fx-background-color: rgba(74,144,226,0.06);
+    -fx-text-fill: #111111;
+    -fx-font-weight: 400;
+}
+
+/* note cell styles */
+.note-title {
+    -fx-font-weight: 600;
+    -fx-font-size: 13px;
+}
+.note-preview {
+    -fx-text-fill: #6b7b8b;
+    -fx-font-size: 12px;
+}
+
+.panel-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+.panel-title-small {
+    -fx-font-size: 20px; /* slightly larger to match reference */
+    -fx-font-weight: 800; /* stronger weight for emphasis */
+    -fx-text-fill: #222222;
+    -fx-padding: 8 0 6 0; /* space below the hairline and above the cards */
+}
+
+.large-input {
+    -fx-font-size: 14px;
+    -fx-padding: 8;
+}
+
+/* active sidebar style (when we implement active state) */
+.side-button:selected, .side-button:focused {
+    -fx-background-color: linear-gradient(#3a5566,#2b4050);
+    -fx-text-fill: white;
+}
+
+Hyperlink {
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+
+/* helper classes to constrain widths from FXML */
+.width-240 { -fx-pref-width: 240; -fx-max-width: 240; }
+.width-260 { -fx-pref-width: 260; -fx-max-width: 260; }
+.width-270 { -fx-pref-width: 270; -fx-max-width: 270; }
+
+/* HBox-based tab styles to replace button look */
+.header-tab {
+    -fx-padding: 16 18 16 18;
+    -fx-background-color: transparent; /* let parent/nav background show through when not active */
+    -fx-border-color: rgba(255,255,255,0.03);
+    -fx-border-width: 0 0 1 0;
+}
+.header-tab Label {
+    -fx-text-fill: #e6e6e6;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+.nav-tab {
+    -fx-padding: 18 18 18 18;
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.18);
+    -fx-border-width: 0 0 1 0;
+}
+.nav-tab:hover {
+    -fx-background-color: rgba(255,255,255,0.03);
+}
+.nav-tab Label {
+    -fx-text-fill: #e6e6e6;
+    -fx-font-size: 15px;
+}
+
+/* Active tab appearance (only applied to the active HBox) */
+.nav-tab.active-tab, .header-tab.active-tab {
+    -fx-background-color: rgba(0,0,0,0.18); /* slightly darker overlay */
+}
+
+/* Active header specifics (stronger gradient when header is active) */
+.header-tab.active-tab {
+    -fx-background-color: linear-gradient(#2b2b2b, #191919);
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: rgba(255,255,255,0.08);
+}
+
+/* When content area must be dark, apply this class or inline style */
+.dark-content {
+    -fx-background-color: #3b3b3b;
+}
+
+/* SVG icons used inside HBox tabs */
+.header-tab SVGPath, .nav-tab SVGPath {
+    -fx-fill: #e6e6e6;
+}
+
+/* Dashboard content styles */
+
+/* Refined visuals to better match reference screenshot */
+.center-container {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 28 36 36 60;
+    -fx-effect: none;
+    -fx-alignment: TOP_LEFT;
+    -fx-max-width: Infinity;
+}
+
+/* Card appearance used for stats, info sections and quick actions - consistent rounded light-gray background */
+.stat-card, .info-card, .info-card.tall, .actions-card.wide {
+    -fx-background-color: #e9e9e9; /* rounded light gray */
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-padding: 16 18 18 18;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.03), 6, 0.0, 0, 3);
+}
+.stat-card.large { -fx-pref-height: 120; }
+
+/* Stat label and number prominence */
+.stat-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #222222;
+}
+.stat-number {
+    -fx-font-size: 40px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #111111;
+}
+
+/* Info card internals: lists should be transparent so the gray card shows through */
+.info-card.tall .list-view, .info-card.tall .list-cell {
+    -fx-background-color: transparent;
+}
+
+/* Quick action pills should be visible on the gray card */
+.pill-button {
+    -fx-background-color: linear-gradient(#ffffff, #f6f6f6);
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 1;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10 14 10 14;
+    -fx-text-fill: #222;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.02), 2, 0.0, 0, 1);
+}
+
+/* Ensure the stat-icon remains a small white inset square on the gray card */
+.stat-icon {
+    -fx-pref-width: 34;
+    -fx-pref-height: 34;
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-width: 1;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-alignment: CENTER;
+}
+
+/* hairline under title to span content area */
+.hairline { -fx-pref-height: 2; -fx-background-color: rgba(0,0,0,0.12); }
+
+/* make left sidebar active highlight stronger */
+.header-tab, .nav-tab { -fx-background-color: transparent; }
+.header-tab.active-tab, .nav-tab.active-tab, .nav-tab:hover { -fx-background-color: rgba(0,0,0,0.12); }
+
+/* overall page background to match screenshot 2 */
+.root { -fx-background-color: #f2f2f2; }
+
+/* adjust page title size */
+.page-title { -fx-font-size: 24px; -fx-font-weight: 700; }
+
+/* button icon box used inside quick-action buttons */
+.btn-icon {
+    -fx-pref-width: 28;
+    -fx-pref-height: 28;
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 1;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-alignment: CENTER;
+}
+
+/* topbar icon small square */
+.topbar-icon {
+    -fx-pref-width: 28;
+    -fx-pref-height: 28;
+    -fx-background-color: #ffffff;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-width: 1;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+/* Ensure ScrollPane viewport covers available width and center-container expands */
+.content-scroll { -fx-background-color: transparent; }
+.content-scroll .viewport { -fx-background-color: transparent; }
+
+/* center-container should stretch; remove hard max width constraints */
+.center-container {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 28 36 36 60;
+    -fx-effect: none;
+    -fx-alignment: TOP_LEFT;
+    -fx-max-width: Infinity;
+}
+
+/* Make stat cards responsive: use percent width fallback via GridPane columns already set; prefer narrower pref widths but allow expand */
+.stat-card { -fx-pref-width: 220; -fx-min-width: 160; }
+
+/* Consolidated final dashboard styles - placed at end so they take precedence */
+
+/* Page title: large and bold for emphasis */
+.page-title {
+    -fx-font-size: 34px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #222222;
+    -fx-padding: 6 0 12 0;
+}
+
+/* Center container (white panel) should fill the viewport and have modest internal padding */
+.center-container {
+    -fx-background-color: white;
+    -fx-background-radius: 0; /* full-bleed white panel */
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 20 28 28 28; /* balanced padding on all sides */
+    -fx-effect: none;
+    -fx-alignment: TOP_LEFT;
+    -fx-max-width: Infinity;
+}
+
+/* Card appearance used for stats, info sections and quick actions - consistent rounded light-gray background */
+.stat-card, .info-card, .info-card.tall, .actions-card.wide {
+    -fx-background-color: #e9e9e9; /* rounded light gray */
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-padding: 16 18 18 18;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.03), 6, 0.0, 0, 3);
+}
+.stat-card.large { -fx-pref-height: 120; }
+
+/* Stat label and number prominence */
+.stat-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #222222;
+}
+.stat-number {
+    -fx-font-size: 40px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #111111;
+}
+
+/* Info card internals: lists should be transparent so the gray card shows through */
+.info-card.tall .list-view, .info-card.tall .list-cell {
+    -fx-background-color: transparent;
+}
+
+/* Quick action pills should be visible on the gray card */
+.pill-button {
+    -fx-background-color: linear-gradient(#ffffff, #f6f6f6);
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 1;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10 14 10 14;
+    -fx-text-fill: #222;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.02), 2, 0.0, 0, 1);
+}
+
+/* Ensure the stat-icon remains a small white inset square on the gray card */
+.stat-icon {
+    -fx-pref-width: 34;
+    -fx-pref-height: 34;
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-border-color: rgba(0,0,0,0.06);
+    -fx-border-width: 1;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-alignment: CENTER;
+}
+
+/* hairline under title to span content area */
+.hairline { -fx-pref-height: 2; -fx-background-color: rgba(0,0,0,0.12); }
+
+/* make left sidebar active highlight stronger */
+.header-tab, .nav-tab { -fx-background-color: transparent; }
+.header-tab.active-tab, .nav-tab.active-tab, .nav-tab:hover { -fx-background-color: rgba(0,0,0,0.12); }
+
+/* overall page background to match screenshot 2 */
+.root { -fx-background-color: #f2f2f2; }
+
+/* adjust page title size */
+.page-title { -fx-font-size: 24px; -fx-font-weight: 700; }
+
+/* button icon box used inside quick-action buttons */
+.btn-icon {
+    -fx-pref-width: 28;
+    -fx-pref-height: 28;
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-border-color: rgba(0,0,0,0.08);
+    -fx-border-width: 1;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-alignment: CENTER;
+}
+
+/* topbar icon small square */
+.topbar-icon {
+    -fx-pref-width: 28;
+    -fx-pref-height: 28;
+    -fx-background-color: #ffffff;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-width: 1;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+/* Ensure ScrollPane viewport covers available width and center-container expands */
+.content-scroll { -fx-background-color: transparent; }
+.content-scroll .viewport { -fx-background-color: transparent; }
+
+/* center-container should stretch; remove hard max width constraints */
+.center-container {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 28 36 36 60;
+    -fx-effect: none;
+    -fx-alignment: TOP_LEFT;
+    -fx-max-width: Infinity;
+}
+
+/* Make stat cards responsive: use percent width fallback via GridPane columns already set; prefer narrower pref widths but allow expand */
+.stat-card { -fx-pref-width: 220; -fx-min-width: 160; }
+
+/* Modal / Create New Note dialog styles (tuned to match dashboard modal) */
+.modal-dialog {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.6);
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.15), 12, 0.0, 0, 4);
+    -fx-padding: 0;
+    -fx-pref-width: 420px;
+}
+.modal-header {
+    -fx-padding: 14 18 12 18;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-width: 0 0 1 0;
+}
+.modal-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #111111;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.25), 6, 0.0, 0, 2);
+}
+.modal-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(0,0,0,0.45);
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.06), 4, 0.0, 0, 1);
+}
+.modal-close {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #444444;
+    -fx-font-weight: 700;
+    -fx-padding: 4 8 4 8;
+}
+.modal-body { -fx-padding: 12 18 6 18; }
+.modal-field-label { -fx-font-size: 12px; -fx-text-fill: #222; -fx-padding: 6 0 4 4; }
+.modal-input {
+    -fx-background-color: linear-gradient(#eaeaea, #e0e0e0);
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: rgba(0,0,0,0.45);
+}
+.modal-input:focused {
+    -fx-border-color: rgba(0,0,0,0.24);
+}
+.modal-textarea {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: rgba(0,0,0,0.35);
+}
+.button.modal-cancel {
+    -fx-background-color: linear-gradient(#f5f5f5, #ededed);
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-radius: 6px;
+    -fx-padding: 6 12 6 12;
+}
+.button.modal-submit {
+    -fx-background-color: linear-gradient(#2b2b2b, #1f1f1f);
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 14 8 14;
+    -fx-font-weight: 600;
+    -fx-border-color: rgba(0,0,0,0.6);
+}
+
+/* ensure the modal input placeholders look like the reference (slightly darker prompt) */
+.text-area .placeholder, .text-field .placeholder { -fx-fill: rgba(0,0,0,0.45); }
+
+/* Notes page specific styles */
+.empty-placeholder {
+    -fx-pref-height: 420px;
+    -fx-alignment: center;
+}
+.empty-placeholder > Label { -fx-alignment: center; }
+
+.choice-box.pill, .choice-box.pill .list-cell { -fx-background-color: #e9e9e9; -fx-background-radius: 8px; -fx-padding: 8 12; }
+.choice-box .button { -fx-background-color: #e9e9e9; -fx-background-radius: 8px; -fx-border-color: rgba(0,0,0,0.08); }
+
+.pill-button { -fx-background-color: linear-gradient(#3b3b3b,#2b2b2b); -fx-text-fill: white; -fx-padding: 8 12; -fx-background-radius: 8px; -fx-font-weight:600; }
+
+/* Notes page chips and info button */
+.chip {
+    -fx-background-color: #e9e9e9;
+    -fx-background-radius: 8px;
+    -fx-padding: 6 10 6 10;
+}
+.chip .label { -fx-text-fill: #222; }
+
+.pill-button {
+    -fx-background-color: linear-gradient(#2f2f2f,#1f1f1f);
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 14;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.15), 4, 0.0, 0, 2);
+}
+.pill-button:hover { -fx-opacity: 0.95; }
+
+.info-button {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-padding: 6 10;
+    -fx-font-weight: 700;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.06), 2, 0.0, 0, 1);
+}
+
+.empty-placeholder { -fx-padding: 40 0 40 0; }
+.empty-placeholder Label { -fx-alignment: center; }
+
+/* Notes area: remove box/border so list is full-bleed and not boxed */
+#notesScroll, #notesScroll .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+    -fx-padding: 0;
+}
+#notesScroll .content { -fx-background-color: transparent; -fx-padding:0; }
+#notesList {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+    -fx-padding: 0;
+}
+#notesList .list-cell { -fx-background-color: transparent; -fx-border-color: transparent; }
+
+/* Notes list item tweaks for pixel closeness */
+#notesList { -fx-cell-size: 64px; }
+.note-title { -fx-font-weight: 700; -fx-font-size: 15px; -fx-text-fill: #222222; }
+.note-preview { -fx-text-fill: #7a858b; -fx-font-size: 12px; }
+#notesList .list-cell { -fx-padding: 10 0 10 12; }
+
+/* Chips look: add subtle icon-like left padding and rounded background */
+.chip {
+    -fx-background-color: #e9e9e9;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 16 8 12; /* extra right padding */
+    -fx-alignment: CENTER_LEFT;
+}
+.chip .label { -fx-text-fill: #222; -fx-font-size: 13px; }
+
+/* make the combo arrow smaller and subtle */
+.combo-box .arrow {
+    -fx-background-color: transparent;
+    -fx-shape: "";
+}
+
+/* New Note pill: keep rounded dark box with small white plus */
+.pill-button {
+    -fx-background-color: linear-gradient(#2b2b2b,#1e1e1e);
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 14;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+.pill-button .text { -fx-fill: white; }
+
+/* Force full opacity and explicit text color for list view and cells */
+.list-view, .list-view .list-cell, #notesList, #notesList .list-cell {
+    -fx-opacity: 1.0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #222222;
+}
+.list-view .list-cell .label, #notesList .list-cell .label {
+    -fx-text-fill: #222222;
+    -fx-opacity: 1.0;
+}
+
+/* Ensure selection doesn't invert colors or reduce opacity */
+.list-view .list-cell:selected, #notesList .list-cell:selected {
+    -fx-opacity: 1.0;
+    -fx-text-fill: #111111;
+}
+
+/* ComboBox / ChoiceBox popup backgrounds: make dropdowns opaque and readable */
+.combo-box-popup .list-view, .choice-box .list-view, .combo-box .list-view {
+    -fx-background-color: white; /* popup background */
+}
+.combo-box-popup .list-cell, .choice-box .list-cell, .combo-box .list-cell {
+    -fx-background-color: white; /* item background */
+    -fx-text-fill: #222222;
+    -fx-padding: 8 12 8 12;
+}
+.combo-box-popup .list-cell:hover, .choice-box .list-cell:hover, .combo-box .list-cell:hover {
+    -fx-background-color: rgba(0,0,0,0.04);
+}
+.combo-box-popup .list-cell:filled:selected, .choice-box .list-cell:filled:selected, .combo-box .list-cell:filled:selected {
+    -fx-background-color: rgba(74,144,226,0.12);
+    -fx-text-fill: #111111;
+}
+
+/* Task panels: use white card with thin border to match Dashboard/Notes look */
+.info-card.tall {
+    -fx-background-color: #e9e9e9; /* use same gray as other cards */
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 18px;
+}
+
+/* List inside info card should use transparent viewport so card shows; cells keep white background for contrast */
+.info-card.tall .list-view {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+}
+.info-card.tall .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 12 8 12 12;
+    -fx-border-color: transparent;
+}
+.info-card.tall .list-cell:hover {
+    -fx-background-color: rgba(74,144,226,0.03);
+}
+
+/* Task list title: a bit larger weight to match other lists */
+.note-title {
+    -fx-font-weight: 700;
+    -fx-font-size: 15px;
+    -fx-text-fill: #222222;
+}
+.note-preview {
+    -fx-text-fill: #6b7b8b;
+    -fx-font-size: 12px;
+}
+
+/* ensure the details text area looks like the modal input but read-only */
+.modal-textarea:disabled, .modal-textarea[editable="false"] {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.06);
+}
+
+/* Notification Settings modal specifics (tuned further) */
+.modal-dialog { -fx-pref-width: 780px; -fx-pref-height: 480px; -fx-background-radius: 12px; -fx-border-radius: 12px; }
+.modal-header { -fx-padding: 26 28 12 28; -fx-border-color: rgba(0,0,0,0.08); -fx-border-width: 0 0 1 0; }
+.modal-title { -fx-font-size: 34px; -fx-font-weight: 900; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.22), 6, 0.0, 0, 2); -fx-padding: 2 0 0 0; }
+.modal-subtitle { -fx-font-size: 15px; -fx-text-fill: rgba(0,0,0,0.45); -fx-padding: 6 0 8 0; }
+
+/* Circular outlined close button, larger and positioned visually in header HBox */
+.modal-close {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-width: 1.5px;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-pref-width: 36px;
+    -fx-pref-height: 36px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 0;
+}
+.modal-close:hover { -fx-background-color: rgba(0,0,0,0.03); }
+
+/* settings rows padding and spacing tightened */
+.settings-row { -fx-padding: 18 28 18 28; }
+
+/* Toggle switch: larger track and knob, darker track when on, subtle border */
+.check-box.switch .box {
+    -fx-background-color: #ececec;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-border-color: rgba(0,0,0,0.12);
+    -fx-border-width: 1px;
+    -fx-padding: 4px;
+    -fx-pref-width: 72px;
+    -fx-pref-height: 36px;
+}
+.check-box.switch .mark {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 18px;
+    -fx-pref-width: 26px;
+    -fx-pref-height: 26px;
+    -fx-translate-x: -22px; /* left */
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.24), 6, 0.0, 0, 2);
+}
+.check-box.switch:selected .box { -fx-background-color: #2f2f2f; }
+.check-box.switch:selected .mark { -fx-translate-x: 22px; }
+
+/* Make the description labels slightly larger and spaced */
+.settings-row Label + Label { -fx-font-size: 13px; -fx-padding: 8 0 0 0; }
+
+/* ComboBox: full width look, rounded, more inner padding */
+.combo-box { -fx-background-radius: 10px; -fx-border-radius: 10px; }
+.combo-box .button { -fx-background-color: linear-gradient(#ffffff, #f6f6f6); -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 12 14 12 14; -fx-border-color: rgba(0,0,0,0.08); }
+.combo-box .label { -fx-padding: 0 0 0 6; }
+.combo-box .arrow-button { -fx-padding: 0 6 0 0; }
+.combo-box .list-view { -fx-background-color: white; -fx-border-radius: 10px; }
+
+/* modal body spacing */
+.modal-dialog > .center, .modal-dialog .center { -fx-padding: 12 28 24 28; }
+
+/* ensure the modal input placeholder is subtle */
+.modal-input { -fx-prompt-text-fill: rgba(0,0,0,0.45); }
+
+/* slight tweak for small screens: allow dialog to be max width 92% of parent */
+.root .modal-dialog { -fx-max-width: 92% ; }

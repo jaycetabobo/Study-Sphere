@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.NotesController" fx:id="notesRoot">
+    <top>
+        <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding:12 16 8 16; -fx-border-color: transparent transparent rgba(0,0,0,0.12) transparent; -fx-border-width: 0 0 2 0;">
+            <children>
+                <Label text="Notes" style="-fx-font-size:20px; -fx-font-weight:bold;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <!-- filter chips -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <children>
+                        <ComboBox fx:id="filterSubject" prefWidth="160" styleClass="chip" />
+                        <ComboBox fx:id="filterTag" prefWidth="140" styleClass="chip" />
+                    </children>
+                </HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="+ New Note" styleClass="pill-button" onMouseClicked="#onNewNote" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="12" style="-fx-padding:28 80 36 36;" alignment="TOP_LEFT">
+            <children>
+                <StackPane fx:id="contentStack">
+                    <children>
+                        <!-- notes list (hidden when empty) -->
+                        <ScrollPane fx:id="notesScroll" fitToWidth="true" style="-fx-background-color:transparent; -fx-border-color:transparent; -fx-padding:0;">
+                            <content>
+                                <VBox spacing="8" alignment="TOP_LEFT">
+                                    <children>
+                                        <ListView fx:id="notesList" prefHeight="420" style="-fx-background-color:transparent; -fx-border-color:transparent; -fx-padding:0;" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+
+                        <!-- empty placeholder shown when there are no notes -->
+                        <VBox fx:id="emptyPlaceholder" spacing="8" alignment="CENTER" styleClass="empty-placeholder" visible="false">
+                            <children>
+                                <ImageView fx:id="emptyIcon" fitWidth="64" fitHeight="64" preserveRatio="true" />
+                                <Label text="No notes found" style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#222;" />
+                                <Label text="Create your first note to get started!" style="-fx-text-fill:#666;" />
+                            </children>
+                        </VBox>
+                        <!-- small info button bottom-right -->
+                        <Button fx:id="notesInfo" text="i" styleClass="info-button" StackPane.alignment="BOTTOM_RIGHT" />
+                     </children>
+                 </StackPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

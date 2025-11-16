@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.DashboardController">
+    <left>
+        <VBox fx:id="sidebar" spacing="0" style="-fx-background-color:#3b3b3b;" prefWidth="240">
+            <children>
+                <!-- header tab as HBox (icon + label) -->
+                <HBox fx:id="btnDashboard" spacing="12" alignment="CENTER_LEFT" styleClass="header-tab" prefHeight="56">
+                    <children>
+                        <SVGPath content="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                        <Label text="StudyHub" />
+                    </children>
+                </HBox>
+
+                <!-- navigation area (slightly lighter) -->
+                <VBox style="-fx-background-color:#444444;" spacing="0">
+                    <children>
+                        <HBox fx:id="btnNotes" spacing="12" alignment="CENTER_LEFT" styleClass="nav-tab" prefHeight="64">
+                            <children>
+                                <SVGPath content="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z" />
+                                <Label text="Notes" />
+                            </children>
+                        </HBox>
+
+                        <HBox fx:id="btnTasks" spacing="12" alignment="CENTER_LEFT" styleClass="nav-tab" prefHeight="64">
+                            <children>
+                                <SVGPath content="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11l-2 2 1.41 1.41L9 13.83 13.59 18 15 16.59 9 11z" />
+                                <Label text="Tasks &amp; Assignments" wrapText="true" />
+                            </children>
+                        </HBox>
+
+                        <HBox fx:id="btnReminders" spacing="12" alignment="CENTER_LEFT" styleClass="nav-tab" prefHeight="64">
+                            <children>
+                                <SVGPath content="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zm6-6V11c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+                                <Label text="Notifications &amp; Reminders" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- footer light area to match the image -->
+                <Region VBox.vgrow="ALWAYS" style="-fx-background-color: #bdbdbd;" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentArea" id="contentFrame">
+            <!-- dynamic content -->
+        </StackPane>
+    </center>
+</BorderPane>

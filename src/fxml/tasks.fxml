@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.TasksController" fx:id="tasksRoot">
+    <top>
+        <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding:12 16 8 16; -fx-border-color: transparent transparent rgba(0,0,0,0.12) transparent; -fx-border-width: 0 0 2 0;">
+            <children>
+                <Label text="Tasks &amp; Assignments" styleClass="page-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <children>
+                        <ComboBox fx:id="filterSubject" prefWidth="160" styleClass="chip" promptText="All Subjects" />
+                        <ComboBox fx:id="filterStatus" prefWidth="140" styleClass="chip" promptText="All Tasks" />
+                        <ComboBox fx:id="filterPriority" prefWidth="140" styleClass="chip" promptText="All Priority" />
+                    </children>
+                </HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="+ New Task" onAction="#onNewTask" styleClass="pill-button" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane style="-fx-padding:28 36 36 36;" fx:id="centerStack">
+            <children>
+                <!-- empty placeholder shown when there are no tasks -->
+                <VBox fx:id="emptyPlaceholder" spacing="8" alignment="CENTER" styleClass="empty-placeholder" visible="false">
+                    <children>
+                        <Label text="&#x2611;" style="-fx-font-size:48px; -fx-text-fill:#222;" />
+                        <Label text="No tasks found" style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#111;" />
+                        <Label text="Create your first task to get started!" style="-fx-text-fill:#666;" />
+                    </children>
+                </VBox>
+
+                <!-- Content when tasks exist: left list card + right details card -->
+                <SplitPane fx:id="tasksSplit" dividerPositions="0.34" visible="true">
+                    <items>
+                        <VBox spacing="6" styleClass="info-card tall" style="-fx-padding:18;" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ListView fx:id="taskList" style="-fx-background-color:transparent;" VBox.vgrow="ALWAYS" prefHeight="0.0" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="8" styleClass="info-card tall" style="-fx-padding:18;" alignment="TOP_LEFT" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label text="Details" styleClass="panel-title" />
+
+                                <Label text="Title" styleClass="modal-field-label" />
+                                <Label fx:id="taskTitle" />
+
+                                <HBox spacing="12" alignment="CENTER_LEFT">
+                                    <children>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Subject" styleClass="modal-field-label" />
+                                                <Label fx:id="taskSubjectLabel" />
+                                            </children>
+                                        </VBox>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Due" styleClass="modal-field-label" />
+                                                <Label fx:id="taskDue" />
+                                            </children>
+                                        </VBox>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Priority" styleClass="modal-field-label" />
+                                                <Label fx:id="taskPriority" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <CheckBox fx:id="taskCompleted" text="Completed" onAction="#onToggleComplete" />
+
+                                <Label text="Description" styleClass="modal-field-label" />
+                                <TextArea fx:id="taskDescriptionArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="220" />
+
+                                <HBox spacing="8" alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Button text="Delete" onAction="#onDeleteTask" />
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </items>
+                </SplitPane>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

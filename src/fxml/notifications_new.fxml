@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.NotificationsNewController" alignment="CENTER">
+    <children>
+        <VBox spacing="0" alignment="TOP_CENTER" styleClass="modal-dialog" fx:id="reminderDialog">
+            <children>
+                <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="8">
+                    <children>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Create New Reminder" styleClass="modal-title" />
+                                <Label text="Set up a custom reminder for important events." styleClass="modal-subtitle" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="X" onAction="#onCancelNewReminder" styleClass="modal-close" />
+                    </children>
+                </HBox>
+
+                <VBox spacing="12" styleClass="modal-body">
+                    <children>
+                        <Label text="Title" styleClass="modal-field-label" />
+                        <TextField fx:id="reminderTitle" promptText="Reminder title..." styleClass="modal-input" />
+
+                        <Label text="Type" styleClass="modal-field-label" />
+                        <ComboBox fx:id="reminderType" styleClass="modal-input" prefWidth="360" />
+
+                        <VBox spacing="8">
+                            <children>
+                                <Label text="Date" styleClass="modal-field-label" />
+                                <DatePicker fx:id="reminderDate" styleClass="modal-input" />
+
+                                <Label text="Time" styleClass="modal-field-label" />
+                                <HBox spacing="8">
+                                    <children>
+                                        <ComboBox fx:id="reminderHour" styleClass="modal-input time-picker" HBox.hgrow="ALWAYS" prefWidth="160" />
+                                        <ComboBox fx:id="reminderMinute" styleClass="modal-input time-picker" HBox.hgrow="ALWAYS" prefWidth="160" />
+                                        <ComboBox fx:id="reminderAmPm" styleClass="modal-input time-picker" prefWidth="120" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <Label text="Message" styleClass="modal-field-label" />
+                        <TextArea fx:id="reminderMessage" promptText="Optional reminder message..." styleClass="modal-textarea" prefHeight="100" />
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="12" style="-fx-padding:14;">
+                    <children>
+                        <Button text="Cancel" onAction="#onCancelNewReminder" />
+                        <Button text="Create Reminder" onAction="#onSaveNewReminder" styleClass="modal-submit" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

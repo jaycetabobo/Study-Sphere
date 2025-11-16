@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.HomeController">
+    <children>
+        <StackPane alignment="TOP_LEFT" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <children>
+                <!-- Put main content inside a ScrollPane so it fills the available width -->
+                <ScrollPane fx:id="mainScroll" fitToWidth="true" fitToHeight="true" maxWidth="Infinity" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="content-scroll">
+                    <content>
+                        <!-- Make the center container the ScrollPane content directly so it fills viewport -->
+                        <VBox fx:id="centerContainer" styleClass="center-container" spacing="18">
+                            <padding>
+                                <Insets top="12" right="24" bottom="12" left="24" />
+                            </padding>
+                            <children>
+                                <!-- Top bar: small icon + title and hairline -->
+                                <VBox spacing="6" prefWidth="Infinity">
+                                    <children>
+                                        <Region styleClass="topbar-strip" />
+                                        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="topbar" prefWidth="Infinity">
+                                            <children>
+                                                <!-- removed topbar-icon to simplify header -->
+                                                <Label text="Dashboard" styleClass="page-title" style="-fx-font-size:26px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                            </children>
+                                        </HBox>
+                                        <Separator styleClass="hairline" />
+                                    </children>
+                                </VBox>
+
+                                <!-- top stat cards (larger) -->
+                                <GridPane hgap="28" vgap="24" prefWidth="Infinity">
+                                    <padding>
+                                        <Insets top="8" right="0" bottom="8" left="0" />
+                                    </padding>
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="25" />
+                                        <ColumnConstraints percentWidth="25" />
+                                        <ColumnConstraints percentWidth="25" />
+                                        <ColumnConstraints percentWidth="25" />
+                                    </columnConstraints>
+                                    <children>
+                                        <VBox GridPane.columnIndex="0" styleClass="stat-card large" GridPane.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:14 16 14 16;">
+                                            <padding>
+                                                <Insets top="14" right="16" bottom="14" left="16" />
+                                            </padding>
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                                    <children>
+                                                        <Label text="Total Notes" styleClass="stat-label" style="-fx-font-size:16px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <StackPane styleClass="stat-icon">
+                                                            <children>
+                                                                <SVGPath content="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z" styleClass="stat-icon-svg icon-pencil" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </HBox>
+                                                <Region prefHeight="8" />
+                                                <Label fx:id="totalNotesLabel" text="0" styleClass="stat-number" style="-fx-font-size:34px; -fx-font-weight:800; -fx-text-fill:#111111;" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox GridPane.columnIndex="1" styleClass="stat-card large" GridPane.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:14 16 14 16;">
+                                            <padding>
+                                                <Insets top="14" right="16" bottom="14" left="16" />
+                                            </padding>
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                                    <children>
+                                                        <Label text="Active Tasks" styleClass="stat-label" style="-fx-font-size:16px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <StackPane styleClass="stat-icon">
+                                                            <children>
+                                                                <SVGPath content="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11l-2 2 1.41 1.41L9 13.83 13.59 18 15 16.59 9 11z" styleClass="stat-icon-svg icon-check" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </HBox>
+                                                <Region prefHeight="8" />
+                                                <Label fx:id="activeTasksLabel" text="0" styleClass="stat-number" style="-fx-font-size:34px; -fx-font-weight:800; -fx-text-fill:#111111;" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox GridPane.columnIndex="2" styleClass="stat-card large" GridPane.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:14 16 14 16;">
+                                            <padding>
+                                                <Insets top="14" right="16" bottom="14" left="16" />
+                                            </padding>
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                                    <children>
+                                                        <Label text="Completed Tasks" styleClass="stat-label" style="-fx-font-size:16px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <StackPane styleClass="stat-icon">
+                                                            <children>
+                                                                <SVGPath content="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" styleClass="stat-icon-svg icon-check-green" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </HBox>
+                                                <Region prefHeight="8" />
+                                                <Label fx:id="completedTasksLabel" text="0" styleClass="stat-number green" style="-fx-font-size:34px; -fx-font-weight:800; -fx-text-fill:#19a974;" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox GridPane.columnIndex="3" styleClass="stat-card large" GridPane.hgrow="ALWAYS" maxWidth="Infinity" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:14 16 14 16;">
+                                            <padding>
+                                                <Insets top="14" right="16" bottom="14" left="16" />
+                                            </padding>
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                                    <children>
+                                                        <Label text="Overdue Tasks" styleClass="stat-label" style="-fx-font-size:16px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                                        <Region HBox.hgrow="ALWAYS" />
+                                                        <StackPane styleClass="stat-icon">
+                                                            <children>
+                                                                <SVGPath content="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11h-2V7h2v6zm0 4h-2v-2h2v2z" styleClass="stat-icon-svg icon-info-red" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </HBox>
+                                                <Region prefHeight="8" />
+                                                <Label fx:id="overdueTasksLabel" text="0" styleClass="stat-number red" style="-fx-font-size:34px; -fx-font-weight:800; -fx-text-fill:#9b1e1e;" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+
+                                <!-- info row: recent notes and upcoming tasks -->
+                                <HBox spacing="18" prefWidth="Infinity">
+                                    <children>
+                                        <VBox HBox.hgrow="ALWAYS" styleClass="info-card tall" prefWidth="420" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:16 18 16 18;">
+                                            <padding>
+                                                <Insets top="14" right="14" bottom="14" left="14" />
+                                            </padding>
+                                            <children>
+                                                <Label text="Recent Notes" styleClass="info-title" style="-fx-font-size:18px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                                <Label text="Your latest study notes" styleClass="info-subtext" />
+                                                <Region prefHeight="12" />
+                                                <ListView fx:id="recentNotesList" prefHeight="120" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox HBox.hgrow="ALWAYS" styleClass="info-card tall" prefWidth="420" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:16 18 16 18;">
+                                            <padding>
+                                                <Insets top="14" right="14" bottom="14" left="14" />
+                                            </padding>
+                                            <children>
+                                                <Label text="Upcoming Tasks" styleClass="info-title" style="-fx-font-size:18px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                                <Label text="Task and assignments due soon" styleClass="info-subtext" />
+                                                <Region prefHeight="12" />
+                                                <ListView fx:id="upcomingTasksList" prefHeight="120" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <!-- quick actions card (full-width) -->
+                                <VBox styleClass="actions-card wide" spacing="12" prefWidth="Infinity" style="-fx-background-color:#e9e9e9; -fx-background-radius:12px; -fx-padding:16 18 16 18;">
+                                    <padding>
+                                        <Insets top="14" right="14" bottom="14" left="14" />
+                                    </padding>
+                                    <children>
+                                        <Label text="Quick Actions" styleClass="info-title" style="-fx-font-size:18px; -fx-font-weight:800; -fx-text-fill:#222222;" />
+                                        <HBox spacing="12">
+                                            <children>
+                                                <Button fx:id="btnNewNote" text="New Notes" styleClass="pill-button" onAction="#onNewNoteClicked">
+                                                    <graphic>
+                                                        <StackPane styleClass="btn-icon">
+                                                            <children>
+                                                                <SVGPath content="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z" styleClass="btn-icon-svg" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </graphic>
+                                                </Button>
+                                                <Button fx:id="btnAddTask" text="Add Task" styleClass="pill-button" onAction="#onAddTaskClicked">
+                                                    <graphic>
+                                                        <StackPane styleClass="btn-icon">
+                                                            <children>
+                                                                <SVGPath content="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 11l-2 2 1.41 1.41L9 13.83 13.59 18 15 16.59 9 11z" styleClass="btn-icon-svg" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </graphic>
+                                                </Button>
+                                                <Button fx:id="btnSetReminders" text="Set Reminders" styleClass="pill-button" onAction="#onSetRemindersClicked">
+                                                    <graphic>
+                                                        <StackPane styleClass="btn-icon">
+                                                            <children>
+                                                                <SVGPath content="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zm6-6V11c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" styleClass="btn-icon-svg" />
+                                                            </children>
+                                                        </StackPane>
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.NotificationsSettingsController" prefWidth="720" prefHeight="420" styleClass="modal-dialog">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="modal-header">
+            <children>
+                <VBox>
+                    <children>
+                        <Label text="Notification Settings" styleClass="modal-title" />
+                        <Label text="Customize how and when you receive notifications." styleClass="modal-subtitle" />
+                    </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnClose" mnemonicParsing="false" text="✕" onAction="#onClose" styleClass="modal-close" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="18" style="-fx-padding:18 20 18 20;">
+            <children>
+                <VBox spacing="12">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="settings-row">
+                            <children>
+                                <VBox spacing="4">
+                                    <children>
+                                        <Label text="Browser Notifications" style="-fx-font-weight:700; -fx-font-size:14px;" />
+                                        <Label text="Receive desktop notifications for reminders" style="-fx-text-fill: rgba(0,0,0,0.45);" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <ToggleButton fx:id="enablePopups" styleClass="switch" />
+                            </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="settings-row">
+                            <children>
+                                <VBox spacing="4">
+                                    <children>
+                                        <Label text="Task Reminders" style="-fx-font-weight:700; -fx-font-size:14px;" />
+                                        <Label text="Automatic reminders for upcoming tasks" style="-fx-text-fill: rgba(0,0,0,0.45);" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <ToggleButton fx:id="enableSounds" styleClass="switch" />
+                            </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="settings-row">
+                            <children>
+                                <VBox spacing="4">
+                                    <children>
+                                        <Label text="Exam Reminders" style="-fx-font-weight:700; -fx-font-size:14px;" />
+                                        <Label text="Special alerts for exam dates" style="-fx-text-fill: rgba(0,0,0,0.45);" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <ToggleButton fx:id="enableExamReminders" styleClass="switch" />
+                            </children>
+                        </HBox>
+
+                    </children>
+                </VBox>
+
+                <VBox spacing="8">
+                    <children>
+                        <Label text="Default Reminder Time (hours before)" style="-fx-font-weight:700; -fx-font-size:14px;" />
+                        <ComboBox fx:id="defaultReminderTime" prefWidth="380" styleClass="modal-input" />
+                    </children>
+                </VBox>
+
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

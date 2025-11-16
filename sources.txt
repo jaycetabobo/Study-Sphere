@@ -1,0 +1,10 @@
+C:\Users\donna\IdeaProjects\Study Sphere\src\Main.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\Main.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\controllers\DashboardController.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\controllers\LoginController.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\controllers\NotesController.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\controllers\NotificationsController.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\controllers\TasksController.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\models\Note.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\models\TaskItem.java
+C:\Users\donna\IdeaProjects\Study Sphere\src\studysphere\services\MockDataService.java

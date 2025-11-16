@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.TasksController" alignment="CENTER">
+    <children>
+        <VBox id="taskDialog" spacing="0" alignment="TOP_CENTER" styleClass="modal-dialog">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="8" styleClass="modal-header">
+                    <children>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Create New Task" styleClass="modal-title" />
+                                <Label text="Add a new task or assignments." styleClass="modal-subtitle" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="X" onAction="#onCancelNewTask" styleClass="modal-close" />
+                    </children>
+                </HBox>
+
+                <VBox spacing="12" styleClass="modal-body">
+                    <children>
+                        <!-- Title row with status on the right -->
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <children>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Title" styleClass="modal-field-label" />
+                                        <TextField fx:id="newTaskTitle" promptText="Enter task title..." styleClass="modal-input" />
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Label text="Status" styleClass="modal-field-label" />
+                                        <ComboBox fx:id="newTaskStatus" prefWidth="160" styleClass="modal-input" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <Label text="Subject" styleClass="modal-field-label" />
+                        <TextField fx:id="newTaskSubject" promptText="e.g. Mathematics, History, Chemistry..." styleClass="modal-input" />
+
+                        <Label text="Due Date" styleClass="modal-field-label" />
+                        <DatePicker fx:id="newTaskDate" styleClass="modal-input" />
+
+                        <Label text="Description" styleClass="modal-field-label" />
+                        <TextArea fx:id="newTaskDescription" promptText="Task description or notes..." styleClass="modal-textarea" prefHeight="120" />
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="12" style="-fx-padding:18;">
+                    <children>
+                        <Button text="Cancel" onAction="#onCancelNewTask" />
+                        <Button text="Create Task" onAction="#onSaveTask" styleClass="modal-submit" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

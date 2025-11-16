@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<!-- use exact UI image background for pixel-perfect match -->
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.LoginController" fx:id="loginRoot" prefWidth="900" prefHeight="600">
+    <children>
+        <!-- full-size background using the doodle asset (non-responsive fill) -->
+        <StackPane layoutX="0" layoutY="0" prefWidth="900" prefHeight="600">
+            <children>
+                <ImageView fx:id="bgImage" fitWidth="900" fitHeight="600" preserveRatio="false">
+                    <image>
+                        <Image url="file:assets/back-to-school-doodle-pattern-vector-45436119 1.png" />
+                    </image>
+                </ImageView>
+
+                <!-- centered container holding logo and form card; moved up further so card is close to logo -->
+                <VBox alignment="CENTER" spacing="6" maxWidth="320" fillWidth="false" StackPane.alignment="CENTER" translateY="-120">
+                    <children>
+                        <!-- centered logo at top like screenshot (larger) -->
+                        <ImageView fx:id="logoImage" fitWidth="380" preserveRatio="true" pickOnBounds="true" styleClass="logo-large width-260">
+                            <image>
+                                <Image url="file:assets/SS logo 1.png" />
+                            </image>
+                        </ImageView>
+
+                        <!-- form card: narrower, rounded background so inputs do not stretch full width -->
+                        <VBox fx:id="loginCard" alignment="TOP_LEFT" spacing="10" prefWidth="280" maxWidth="280">
+                            <children>
+                                <Label text="Email" styleClass="form-label" />
+                                <TextField fx:id="usernameField" promptText="Enter your email address..." styleClass="card-input width-240" />
+                                <Label text="Password" styleClass="form-label" />
+                                <PasswordField fx:id="passwordField" promptText="Enter your password..." styleClass="card-input width-240" />
+                                <Button fx:id="loginButton" text="Sign In" onAction="#onLogin" styleClass="login-button-dark width-270" />
+                                <Hyperlink text="Forgot password?" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>
