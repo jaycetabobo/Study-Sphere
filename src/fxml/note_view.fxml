@@ -38,7 +38,7 @@
                         <!-- editable tags field (hidden until edit mode) -->
                         <TextField fx:id="tagsField" visible="false" promptText="tag1, tag2" styleClass="modal-input" />
                         <Label text="Content" styleClass="modal-field-label" />
-                        <TextArea fx:id="contentArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="220" />
+                        <TextArea fx:id="contentArea" editable="false" wrapText="true" styleClass="modal-textarea" VBox.vgrow="ALWAYS" />
                     </children>
                 </VBox>
             </children>

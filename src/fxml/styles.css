@@ -815,10 +815,12 @@ Hyperlink {
 .modal-textarea:disabled, .modal-textarea[editable="false"] {
     -fx-background-color: white;
     -fx-border-color: rgba(0,0,0,0.06);
+    -fx-min-height: 120px; /* ensure a reasonable minimum for read-only content */
 }
 
 /* Notification Settings modal specifics (tuned further) */
-.modal-dialog { -fx-pref-width: 780px; -fx-pref-height: 480px; -fx-background-radius: 12px; -fx-border-radius: 12px; }
+/* Increase modal dialog height so popups with larger content areas (notes/reminders) can display comfortably. */
+.modal-dialog { -fx-pref-width: 780px; -fx-pref-height: 720px; -fx-background-radius: 12px; -fx-border-radius: 12px; }
 .modal-header { -fx-padding: 26 28 12 28; -fx-border-color: rgba(0,0,0,0.08); -fx-border-width: 0 0 1 0; }
 .modal-title { -fx-font-size: 34px; -fx-font-weight: 900; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.22), 6, 0.0, 0, 2); -fx-padding: 2 0 0 0; }
 .modal-subtitle { -fx-font-size: 15px; -fx-text-fill: rgba(0,0,0,0.45); -fx-padding: 6 0 8 0; }

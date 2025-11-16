@@ -42,7 +42,7 @@
                         <TextField fx:id="timeField" visible="false" styleClass="modal-input" />
 
                         <Label text="Message" styleClass="modal-field-label" />
-                        <TextArea fx:id="messageArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="120" />
+                        <TextArea fx:id="messageArea" editable="false" wrapText="true" styleClass="modal-textarea" VBox.vgrow="ALWAYS" />
                     </children>
                 </VBox>
             </children>
