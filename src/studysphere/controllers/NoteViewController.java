@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import studysphere.models.Note;
 
+@SuppressWarnings({"unchecked","rawtypes"})
 public class NoteViewController {
     @FXML private Label titleLabel;
     @FXML private Label subtitleLabel;
@@ -116,6 +117,7 @@ public class NoteViewController {
         s.close();
     }
 
+    @SuppressWarnings("unchecked")
     @FXML
     private void onDelete() {
         if (note == null) return;
@@ -126,14 +128,11 @@ public class NoteViewController {
             Stage s = (Stage) titleLabel.getScene().getWindow();
             if (s != null && s.getOwner() != null && s.getOwner().getScene() != null) {
                 javafx.scene.Scene ownerScene = s.getOwner().getScene();
-                javafx.scene.control.ListView ownerList = (javafx.scene.control.ListView) ownerScene.lookup("#notesList");
-                if (ownerList != null) {
-                    ownerList.getItems().removeIf(i -> {
-                        try {
-                            if (i instanceof studysphere.models.Note) return ((studysphere.models.Note) i).getId().equals(note.getId());
-                        } catch (Exception ignore) {}
-                        return false;
-                    });
+                Object node = ownerScene.lookup("#notesList");
+                if (node instanceof javafx.scene.control.ListView) {
+                    @SuppressWarnings("unchecked")
+                    javafx.scene.control.ListView<studysphere.models.Note> ownerList = (javafx.scene.control.ListView<studysphere.models.Note>) node;
+                    ownerList.getItems().removeIf(i -> i != null && i.getId().equals(note.getId()));
                 }
             }
         } catch (Exception ignore) {}

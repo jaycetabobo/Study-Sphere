@@ -48,6 +48,7 @@
 
                                 <Label text="Title" styleClass="modal-field-label" />
                                 <Label fx:id="taskTitle" />
+                                <TextField fx:id="taskTitleField" visible="false" styleClass="modal-input" />
 
                                 <HBox spacing="12" alignment="CENTER_LEFT">
                                     <children>
@@ -76,10 +77,41 @@
 
                                 <Label text="Description" styleClass="modal-field-label" />
                                 <TextArea fx:id="taskDescriptionArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="220" />
+                                <!-- editable fields (hidden until edit mode) -->
+                                <HBox spacing="12">
+                                    <children>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Subject" styleClass="modal-field-label" />
+                                                <TextField fx:id="taskSubjectField" visible="false" />
+                                            </children>
+                                        </VBox>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Due" styleClass="modal-field-label" />
+                                                <DatePicker fx:id="taskDuePicker" visible="false" />
+                                            </children>
+                                        </VBox>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Priority" styleClass="modal-field-label" />
+                                                <ChoiceBox fx:id="taskPriorityChoice" visible="false" />
+                                            </children>
+                                        </VBox>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Status" styleClass="modal-field-label" />
+                                                <ComboBox fx:id="taskStatusCombo" visible="false" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
 
                                 <HBox spacing="8" alignment="CENTER_RIGHT">
                                     <children>
                                         <Button text="Delete" onAction="#onDeleteTask" />
+                                        <Button fx:id="editTaskButton" text="Edit" onAction="#onEditToggleTask" />
+                                        <Button fx:id="cancelTaskButton" text="Cancel" onAction="#onCancelEditTask" visible="false" managed="false" />
                                     </children>
                                 </HBox>
 
