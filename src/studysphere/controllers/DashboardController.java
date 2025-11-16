@@ -3,9 +3,12 @@ package studysphere.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +30,8 @@ public class DashboardController {
     private HBox btnTasks;
     @FXML
     private HBox btnReminders;
+    @FXML
+    private HBox btnLogout;
 
     // inline style presets
     // default header style should match nav default so header appears light when not active
@@ -53,6 +58,7 @@ public class DashboardController {
         if (btnNotes != null) btnNotes.setOnMouseClicked(e -> onNotes(null));
         if (btnTasks != null) btnTasks.setOnMouseClicked(e -> onTasks(null));
         if (btnReminders != null) btnReminders.setOnMouseClicked(e -> onReminders(null));
+        if (btnLogout != null) btnLogout.setOnMouseClicked(e -> onLogoutClicked(e));
     }
 
     @FXML
@@ -127,6 +133,27 @@ public class DashboardController {
                 r.prefHeightProperty().bind(contentArea.heightProperty());
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void onLogoutClicked(MouseEvent event) {
+        try {
+            // close current window
+            if (contentArea != null && contentArea.getScene() != null) {
+                Stage stage = (Stage) contentArea.getScene().getWindow();
+                // load login scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                java.net.URL css = getClass().getResource("/fxml/styles.css");
+                if (css != null) scene.getStylesheets().add(css.toExternalForm());
+                stage.setScene(scene);
+                stage.setTitle("Study Sphere - Login");
+                stage.sizeToScene();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
