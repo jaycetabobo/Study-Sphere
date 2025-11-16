@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.NotificationsSettingsController" prefWidth="720" prefHeight="420" styleClass="modal-dialog">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.NotificationsSettingsController" prefWidth="720" prefHeight="420" styleClass="modal-dialog">
     <top>
         <HBox alignment="CENTER_LEFT" spacing="8" styleClass="modal-header">
             <children>
@@ -32,7 +32,7 @@
                                     </children>
                                 </VBox>
                                 <Region HBox.hgrow="ALWAYS" />
-                                <ToggleButton fx:id="enablePopups" styleClass="switch" />
+                                <CheckBox fx:id="enablePopups" styleClass="switch" />
                             </children>
                         </HBox>
 
@@ -45,7 +45,7 @@
                                     </children>
                                 </VBox>
                                 <Region HBox.hgrow="ALWAYS" />
-                                <ToggleButton fx:id="enableSounds" styleClass="switch" />
+                                <CheckBox fx:id="enableSounds" styleClass="switch" />
                             </children>
                         </HBox>
 
@@ -58,7 +58,7 @@
                                     </children>
                                 </VBox>
                                 <Region HBox.hgrow="ALWAYS" />
-                                <ToggleButton fx:id="enableExamReminders" styleClass="switch" />
+                                <CheckBox fx:id="enableExamReminders" styleClass="switch" />
                             </children>
                         </HBox>
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studysphere.controllers.ReminderViewController" alignment="CENTER">
+    <children>
+        <VBox spacing="0" alignment="TOP_CENTER" styleClass="modal-dialog">
+            <children>
+                <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="8">
+                    <children>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label fx:id="titleLabel" styleClass="modal-title" text="Reminder" />
+                                <Label fx:id="subtitleLabel" styleClass="modal-subtitle" text="" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <HBox spacing="8">
+                            <children>
+                                <Button fx:id="deleteButton" text="Delete" styleClass="button modal-cancel" onAction="#onDelete" />
+                                <Button text="X" onAction="#onClose" styleClass="modal-close" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+
+                <VBox spacing="12" styleClass="modal-body">
+                    <children>
+                        <Label text="Type" styleClass="modal-field-label" />
+                        <Label fx:id="typeLabel" />
+
+                        <Label text="Date" styleClass="modal-field-label" />
+                        <Label fx:id="dateLabel" />
+
+                        <Label text="Time" styleClass="modal-field-label" />
+                        <Label fx:id="timeLabel" />
+
+                        <Label text="Message" styleClass="modal-field-label" />
+                        <TextArea fx:id="messageArea" editable="false" wrapText="true" styleClass="modal-textarea" prefHeight="120" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>
+

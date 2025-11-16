@@ -2,13 +2,13 @@ package studysphere.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 
 public class NotificationsSettingsController {
-    @FXML private ToggleButton enablePopups;
-    @FXML private ToggleButton enableSounds;
-    @FXML private ToggleButton enableExamReminders;
+    @FXML private CheckBox enablePopups;
+    @FXML private CheckBox enableSounds;
+    @FXML private CheckBox enableExamReminders;
     @FXML private ComboBox<String> defaultReminderTime;
 
     @FXML
@@ -19,9 +19,10 @@ public class NotificationsSettingsController {
         }
     }
 
+
     @FXML
     void onClose(){
-        Stage s = (Stage) (enablePopups != null ? enablePopups.getScene().getWindow() : null);
+        Stage s = (Stage) (defaultReminderTime != null ? defaultReminderTime.getScene().getWindow() : null);
         if (s != null) s.close();
     }
 }

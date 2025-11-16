@@ -98,6 +98,8 @@ public class MockDataService {
     // legacy: accept string reminders and wrap them into a Reminder.message
     public void addReminder(String reminderString) { reminders.add(new Reminder(UUID.randomUUID().toString(), "", "Custom", "", "", reminderString)); saveToDisk(); }
     public void removeReminder(int index) { if (index >=0 && index < reminders.size()) { reminders.remove(index); saveToDisk(); } }
+    // remove reminder by id
+    public void removeReminder(String id) { if (id == null) return; Iterator<Reminder> it = reminders.iterator(); boolean removed = false; while (it.hasNext()) { Reminder r = it.next(); if (id.equals(r.getId())) { it.remove(); removed = true; break; } } if (removed) saveToDisk(); }
 
     // Simple JSON persistence (manual)
     private synchronized void saveToDisk() {

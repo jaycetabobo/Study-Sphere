@@ -31,8 +31,8 @@ public class NotificationsController {
     @FXML private Label upcomingCountLabel;
     @FXML private ListView<Reminder> upcomingList;
     @FXML private Label upcomingMessageLabel;
-    @FXML private ToggleButton enableSounds;
-    @FXML private ToggleButton enablePopups;
+    @FXML private javafx.scene.control.CheckBox enableSounds;
+    @FXML private javafx.scene.control.CheckBox enablePopups;
 
     // new reminder field (not used here; new-reminder dialog has its own controller)
     @FXML private TextField newReminderText;
@@ -73,28 +73,42 @@ public class NotificationsController {
                     }
                 }
             });
-        }
-        if (reminderList != null) {
-            reminderList.setItems(items);
-            reminderList.setCellFactory(lv -> new ListCell<Reminder>(){
-                @Override
-                protected void updateItem(Reminder r, boolean empty){
-                    super.updateItem(r, empty);
-                    if (empty || r == null){
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-                        StringBuilder sb = new StringBuilder();
-                        if (r.getTitle() != null && !r.getTitle().isBlank()) sb.append(r.getTitle());
-                        if (r.getDate() != null && !r.getDate().isBlank()) sb.append(" — ").append(r.getDate());
-                        if (r.getTime() != null && !r.getTime().isBlank()) sb.append(" ").append(r.getTime());
-                        if (r.getMessage() != null && !r.getMessage().isBlank()) sb.append("\n").append(r.getMessage());
-                        setText(sb.toString());
-                        setWrapText(true);
-                    }
+            // open detail modal on double-click
+            upcomingList.setOnMouseClicked(e -> {
+                if (e.getClickCount() >= 2) {
+                    Reminder sel = upcomingList.getSelectionModel().getSelectedItem();
+                    if (sel != null) openReminderModal(sel);
                 }
             });
-        }
+         }
+         if (reminderList != null) {
+             reminderList.setItems(items);
+             reminderList.setCellFactory(lv -> new ListCell<Reminder>(){
+                 @Override
+                 protected void updateItem(Reminder r, boolean empty){
+                     super.updateItem(r, empty);
+                     if (empty || r == null){
+                         setText(null);
+                         setGraphic(null);
+                     } else {
+                         StringBuilder sb = new StringBuilder();
+                         if (r.getTitle() != null && !r.getTitle().isBlank()) sb.append(r.getTitle());
+                         if (r.getDate() != null && !r.getDate().isBlank()) sb.append(" — ").append(r.getDate());
+                         if (r.getTime() != null && !r.getTime().isBlank()) sb.append(" ").append(r.getTime());
+                         if (r.getMessage() != null && !r.getMessage().isBlank()) sb.append("\n").append(r.getMessage());
+                         setText(sb.toString());
+                         setWrapText(true);
+                     }
+                 }
+             });
+             // open detail modal on double-click
+             reminderList.setOnMouseClicked(e -> {
+                 if (e.getClickCount() >= 2) {
+                     Reminder sel = reminderList.getSelectionModel().getSelectedItem();
+                     if (sel != null) openReminderModal(sel);
+                 }
+             });
+         }
         // manage empty placeholder visibility
         updateEmptyPlaceholder();
         updateUpcomingSummary();
@@ -230,13 +244,42 @@ public class NotificationsController {
     @FXML
     void onSettings() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notifications_settings.fxml"));
+            java.net.URL res = null;
+            java.io.File srcFile = new java.io.File("src/fxml/notifications_settings.fxml");
+            if (srcFile.exists()) res = srcFile.toURI().toURL();
+            if (res == null) res = getClass().getResource("/fxml/notifications_settings.fxml");
+            if (res == null) {
+                java.io.File f = new java.io.File("out/production/Study Sphere/fxml/notifications_settings.fxml");
+                if (f.exists()) res = f.toURI().toURL();
+            }
+            if (res == null) return;
+            FXMLLoader loader = new FXMLLoader(res);
             Parent root = loader.load();
+
             Stage dialog = new Stage();
-            if (reminderList != null && reminderList.getScene() != null && reminderList.getScene().getWindow() != null) dialog.initOwner(reminderList.getScene().getWindow());
-            dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.setTitle("Notification Settings");
-            dialog.setScene(new Scene(root));
+            if (reminderList != null && reminderList.getScene() != null && reminderList.getScene().getWindow() != null) {
+                dialog.initOwner(reminderList.getScene().getWindow());
+                dialog.initModality(Modality.WINDOW_MODAL);
+            } else {
+                dialog.initModality(Modality.APPLICATION_MODAL);
+            }
+            dialog.initStyle(javafx.stage.StageStyle.TRANSPARENT);
+
+            javafx.scene.Group wrapper = new javafx.scene.Group(root);
+            Scene scene = new Scene(wrapper);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+            java.net.URL css = getClass().getResource("/fxml/styles.css");
+            if (css != null) scene.getStylesheets().add(css.toExternalForm());
+
+            dialog.setScene(scene);
+            dialog.setResizable(false);
+            dialog.sizeToScene();
+            dialog.setOnShown(evt -> {
+                if (dialog.getOwner() != null) {
+                    dialog.setX(dialog.getOwner().getX() + (dialog.getOwner().getWidth() - dialog.getWidth()) / 2);
+                    dialog.setY(dialog.getOwner().getY() + (dialog.getOwner().getHeight() - dialog.getHeight()) / 2);
+                }
+            });
             dialog.showAndWait();
         } catch (IOException e) { e.printStackTrace(); }
     }
@@ -265,5 +308,49 @@ public class NotificationsController {
         if (m == null) return false;
         // match dd/mm/yyyy or yyyy-mm-dd
         return m.matches(".*(\\d{1,2}/\\d{1,2}/\\d{4}|\\d{4}-\\d{2}-\\d{2}).*");
+    }
+
+    // helper to open the reminder modal similarly to other modals
+    private void openReminderModal(Reminder r) {
+        try {
+            java.net.URL res = null;
+            java.io.File srcFile = new java.io.File("src/fxml/reminder_view.fxml");
+            if (srcFile.exists()) res = srcFile.toURI().toURL();
+            if (res == null) res = getClass().getResource("/fxml/reminder_view.fxml");
+            if (res == null) return;
+            FXMLLoader loader = new FXMLLoader(res);
+            Parent root = loader.load();
+            Object ctrl = loader.getController();
+            if (ctrl instanceof ReminderViewController) {
+                ((ReminderViewController) ctrl).setReminder(r);
+            }
+
+            Stage dialog = new Stage();
+            if (reminderList != null && reminderList.getScene() != null && reminderList.getScene().getWindow() != null) {
+                dialog.initOwner(reminderList.getScene().getWindow());
+                dialog.initModality(Modality.WINDOW_MODAL);
+            } else {
+                dialog.initModality(Modality.APPLICATION_MODAL);
+            }
+            dialog.initStyle(javafx.stage.StageStyle.TRANSPARENT);
+            javafx.scene.Group wrapper = new javafx.scene.Group(root);
+            Scene scene = new Scene(wrapper);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+            java.net.URL css = getClass().getResource("/fxml/styles.css");
+            if (css != null) scene.getStylesheets().add(css.toExternalForm());
+            dialog.setScene(scene);
+            dialog.setResizable(false);
+            dialog.sizeToScene();
+            dialog.setOnShown(evt -> {
+                if (dialog.getOwner() != null) {
+                    dialog.setX(dialog.getOwner().getX() + (dialog.getOwner().getWidth() - dialog.getWidth()) / 2);
+                    dialog.setY(dialog.getOwner().getY() + (dialog.getOwner().getHeight() - dialog.getHeight()) / 2);
+                }
+            });
+            dialog.showAndWait();
+            // refresh lists after delete or other changes
+            items.setAll(MockDataService.getInstance().getReminders());
+            Platform.runLater(this::updateEmptyPlaceholder);
+        } catch (IOException ex) { ex.printStackTrace(); }
     }
 }
