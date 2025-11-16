@@ -142,9 +142,14 @@ public class NotesController {
 
         notesList.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
             if (newV != null) {
-                noteTitle.setText(newV.getTitle());
-                noteContent.setText(newV.getContent());
-                noteTags.setText(String.join(",", newV.getTags()));
+                // Guard against missing inline editor fields in the FXML that uses this controller
+                if (noteTitle != null) noteTitle.setText(newV.getTitle());
+                if (noteContent != null) noteContent.setText(newV.getContent());
+                if (noteTags != null) noteTags.setText(String.join(",", newV.getTags()));
+            } else {
+                if (noteTitle != null) noteTitle.clear();
+                if (noteContent != null) noteContent.clear();
+                if (noteTags != null) noteTags.clear();
             }
         });
 
@@ -238,6 +243,17 @@ public class NotesController {
         populateFilterTags();
         populateFilterSubjects();
         updatePlaceholder();
+        // ensure long lists are scrolled to the bottom so items aren't visually cut off
+        javafx.application.Platform.runLater(() -> {
+            try {
+                if (notesList != null && !items.isEmpty()) {
+                    // scrollTo uses the item index; scroll to last item for bottom alignment
+                    notesList.scrollTo(items.size() - 1);
+                }
+                // also nudge the outer ScrollPane to the bottom (if present)
+                if (notesScroll != null) notesScroll.setVvalue(1.0);
+            } catch (Exception ignore) {}
+        });
     }
 
     private void updatePlaceholder(){

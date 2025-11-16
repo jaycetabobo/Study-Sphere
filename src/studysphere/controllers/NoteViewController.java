@@ -35,4 +35,30 @@ public class NoteViewController {
         Stage s = (Stage) titleLabel.getScene().getWindow();
         s.close();
     }
+
+    @FXML
+    private void onDelete() {
+        if (note == null) return;
+        // remove from data service
+        studysphere.services.MockDataService.getInstance().removeNote(note.getId());
+        // if owner window has the notes ListView, remove the item from it so UI updates immediately
+        try {
+            Stage s = (Stage) titleLabel.getScene().getWindow();
+            if (s != null && s.getOwner() != null && s.getOwner().getScene() != null) {
+                javafx.scene.Scene ownerScene = s.getOwner().getScene();
+                javafx.scene.control.ListView ownerList = (javafx.scene.control.ListView) ownerScene.lookup("#notesList");
+                if (ownerList != null) {
+                    ownerList.getItems().removeIf(i -> {
+                        try {
+                            if (i instanceof studysphere.models.Note) return ((studysphere.models.Note) i).getId().equals(note.getId());
+                        } catch (Exception ignore) {}
+                        return false;
+                    });
+                }
+            }
+        } catch (Exception ignore) {}
+        // close dialog
+        Stage s = (Stage) titleLabel.getScene().getWindow();
+        s.close();
+    }
 }

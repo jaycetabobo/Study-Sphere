@@ -15,7 +15,13 @@
                             </children>
                         </VBox>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button text="X" onAction="#onClose" styleClass="modal-close" />
+                        <HBox spacing="8">
+                            <children>
+                                <Button text="Edit" styleClass="button modal-submit" />
+                                <Button text="Delete" onAction="#onDelete" styleClass="button modal-cancel" />
+                                <Button text="X" onAction="#onClose" styleClass="modal-close" />
+                            </children>
+                        </HBox>
                     </children>
                 </HBox>
 

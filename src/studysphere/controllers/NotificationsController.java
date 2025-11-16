@@ -174,13 +174,52 @@ public class NotificationsController {
     @FXML
     void onNewReminder() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/notifications_new.fxml"));
+            java.net.URL res = null;
+            // prefer source copy so IDE edits show without rebuild
+            java.io.File srcFile = new java.io.File("src/fxml/notifications_new.fxml");
+            if (srcFile.exists()) res = srcFile.toURI().toURL();
+            if (res == null) res = getClass().getResource("/fxml/notifications_new.fxml");
+            if (res == null) {
+                java.io.File f = new java.io.File("out/production/Study Sphere/fxml/notifications_new.fxml");
+                if (f.exists()) res = f.toURI().toURL();
+            }
+            if (res == null) return;
+            FXMLLoader loader = new FXMLLoader(res);
             Parent root = loader.load();
+            Object ctrl = loader.getController();
+
             Stage dialog = new Stage();
-            if (reminderList != null && reminderList.getScene() != null && reminderList.getScene().getWindow() != null) dialog.initOwner(reminderList.getScene().getWindow());
-            dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.setTitle("New Reminder");
-            dialog.setScene(new Scene(root));
+            if (reminderList != null && reminderList.getScene() != null && reminderList.getScene().getWindow() != null) {
+                dialog.initOwner(reminderList.getScene().getWindow());
+                dialog.initModality(Modality.WINDOW_MODAL);
+            } else {
+                dialog.initModality(Modality.APPLICATION_MODAL);
+            }
+            dialog.initStyle(javafx.stage.StageStyle.TRANSPARENT);
+
+            javafx.scene.Group wrapper = new javafx.scene.Group(root);
+            Scene scene = new Scene(wrapper);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+            java.net.URL css = getClass().getResource("/fxml/styles.css");
+            if (css != null) scene.getStylesheets().add(css.toExternalForm());
+
+            dialog.setScene(scene);
+            dialog.setResizable(false);
+            dialog.sizeToScene();
+
+            dialog.setOnShown(evt -> {
+                if (dialog.getOwner() != null) {
+                    dialog.setX(dialog.getOwner().getX() + (dialog.getOwner().getWidth() - dialog.getWidth()) / 2);
+                    dialog.setY(dialog.getOwner().getY() + (dialog.getOwner().getHeight() - dialog.getHeight()) / 2);
+                }
+                try {
+                    if (ctrl != null) {
+                        java.lang.reflect.Method m = ctrl.getClass().getMethod("requestInitialFocus");
+                        if (m != null) m.invoke(ctrl);
+                    }
+                } catch (Exception ignore) {}
+            });
+
             dialog.showAndWait();
             // refresh
             items.setAll(MockDataService.getInstance().getReminders());
